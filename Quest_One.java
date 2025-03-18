@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Quest_One {
     public static void main(String[] args) {
 
-        long mincircumference = 1_000_000_000_000L;
+        long mincircumference = 2_000_000_000_000L;
         
 
         Scanner scanner = new Scanner(System.in);

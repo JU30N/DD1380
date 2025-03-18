@@ -9,33 +9,25 @@ import java.util.Scanner;
 
 
 
+//string input -> dictionary with the the first letter a and then b -> if it already exists 
+//-> look for if key exits if not make a key -> a value
+//-> if key doent exist make a key with a value 1 
+
+//abfjgkdlfsa
+
+
+
+
+
+
+
 public class countchar {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("");
-        String string_list = scanner.next();
-        scanner.close();
         
-        int length_string_list = string_list.length();
-        int count_letters = 0;
-        ArrayList<String> list_of_letters = new ArrayList<>();
-
-        string_list = string_list.toLowerCase();//gör allt till små bokstäver
-        
-        for (int i = 0; i < length_string_list; i++){//loopar antal gånger som strängen
-            char ch = string_list.charAt(i);
-            //System.out.println(ch);
-            boolean isAlphabet = (""+ch).matches("[a-z]");
 
 
-            if (isAlphabet){//kollar om det är en bokstav
-                list_of_letters.add(""+ch);
-                count_letters++;
-            }
 
-        }      
-        System.out.println(count_letters);
-        System.out.println(list_of_letters);
+
     }
 }

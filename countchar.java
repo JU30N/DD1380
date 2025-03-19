@@ -19,42 +19,44 @@ import java.util.TreeMap;
 public class countchar {
     public static void main(String[] args) {
         //variables
-        TreeMap<String,Integer> countAlfa;
+        TreeMap<Character,Integer> countAlfa;
         
 
 
         
         Scanner scanner = new Scanner(System.in);
         System.out.print("");
-        String string_input = scanner.next();
-        scanner.close(); 
-
-        countAlfa = new TreeMap<String, Integer>();
-
-        //filter
-        String filterd_letters_string_input = string_input.replaceAll("[^a-zA-Z]","");
-        String filterd_to_lower_case_string_input = filterd_letters_string_input.toLowerCase();
-        System.out.println(filterd_letters_string_input);
-        System.out.println(filterd_to_lower_case_string_input);
-
-
-        //length
-        int lenght_string_input = filterd_to_lower_case_string_input.length();
-        System.out.println(lenght_string_input);
+        countAlfa = new TreeMap<Character, Integer>();
+        while (scanner.hasNextLine()){
+            String string_input = scanner.nextLine();
+            //System.out.println(string_input);
+            if (string_input.isEmpty()){
+                break;
+            }
+            String filterd_letters_string_input = string_input.replaceAll("[^a-zA-Z]","").toUpperCase().replaceAll(" ", "");
+                
+            int lenght_string_input = filterd_letters_string_input.length();
+            //System.out.println(lenght_string_input);
+            if (lenght_string_input == 0){
+                System.out.println("0");
+                break;
+            }
+            
+            
+            insertLettersToDic(filterd_letters_string_input, countAlfa, lenght_string_input);
+            
+        }
+        scanner.close();
         
-          
-        insertLettersToDic(filterd_to_lower_case_string_input, countAlfa, lenght_string_input);
-
-        System.out.println(countAlfa);
-        for (String word : countAlfa.keySet()) {//word gets a to be a key from the countAlfa 
-            System.out.println(word + " " + countAlfa.get(word));//thus for each key int countAlfa print the value of the corrispoding key
+        for (Character word : countAlfa.keySet()) {//word gets a to be a key from the countAlfa 
+            System.out.println(word + ":" + countAlfa.get(word));//thus for each key int countAlfa print the value of the corrispoding key
         }
 
     }
 
-    public static void insertLettersToDic(String str, TreeMap<String, Integer> dict, Integer length){
+    public static void insertLettersToDic(String str, TreeMap<Character, Integer> dict, Integer length){
         for (int i = 0; length > i; i++){
-            String character = String.valueOf(str.charAt(i));//changes the char to a string
+            Character character = Character.valueOf(str.charAt(i));//changes the char to a string
             
             if (dict.get(character) == null){
                 dict.put(character, 1);

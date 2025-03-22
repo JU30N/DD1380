@@ -23,23 +23,51 @@
 // sjö,14,15
 // män,17,18
 // thus 3, 12 doesnt have any letters therfore become spaces
-
-import java.util.Scanner;
+// a = "              "
+import java.util.*;
 
 public class decomp {
     public static void main(String[] args ) {
         //var
         String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
 
+        List<Character> char_list = new ArrayList<>();
+
         //dela upp ;
-        String[] input_parts = input.split(";");
+        String[] input_parts = input.split("; ");
+
+
+        //for(int i = 0; i < input_parts.length; i++){
+        //    System.out.println(input_parts[i]);
+        //}
         
-        for(int i = 0; i < input_parts.length; i++){
-            System.out.println(input_parts[i]);
-        }
+        //ta bort : 
+        for(String words : input_parts){
+            String[] word_and_numbers = words.split(": ");
+            //for(String word : word_and_numbers){
+            //    System.out.println(word); 
+            //}
+            // ["sju","0 7"]
+            for(int i=0; i < word_and_numbers.length;){
+                String the_word = word_and_numbers[i];
+                String the_numbers = word_and_numbers[(i+1)];
+                System.out.println(the_word +" " + the_numbers);
+                i = i + 2;
+                //cut sju
+                for(){
+                    String[] cut_the_word = 
+                }
 
 
 
+            //[s ,j ,u ,  ,s ,j ,ö ,s ,j ,u ,k ,a ,  ,s ,j ,ö ,m ,ä ,n]
+
+            }
+        }        
+
+
+
+        
 
     }
 }

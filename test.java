@@ -26,7 +26,7 @@
 // a = "              "
 import java.util.*;
 
-public class decomp {
+public class test {
     public static void main(String[] args ) {
         //var
         // String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
@@ -36,43 +36,40 @@ public class decomp {
         System.out.print("");
         String input = scanner.nextLine();
         scanner.close();
-        if(input.startsWith(" ")){
-            input = input.replaceFirst(" ", "");//tar bort alla mellan rum i början
-        }
-
+        //input = input.trim();
         List<Character> char_list = new ArrayList<>();
 
+        if(input.isEmpty() || input.length() > 100_000_000){
+            System.exit(0);
+        }
         //dela upp ;
         String[] input_parts = input.split("; ");
 
-
-        //[sju: 0 7,sjö: 4 13]
+        //["sju: 0 7", "sjö: 4 13"]
         //ta bort : 
         for(String words : input_parts ){
-            String[] word_and_numbers = words.split(":");
-            
+            String[] word_and_numbers = words.split(": ");
+            //for(String word : word_and_numbers){
+            //    System.out.println(word); 
+            //}
             // ["sju","0 7"]
-            String word = word_and_numbers[0];
-
+            String word = word_and_numbers[0].trim();
             String[] number = word_and_numbers[1].split(" ");
             
-
-
-            String[] split_word = word_and_numbers[0].split("");
-           
-            
-            // [sju] (length is 3)      [0, 7]
+            String[] split_word = word.split("");
+            //System.out.println(word);
+               
+            // ["s", "j", "u"] (length is 3)      ["0", "7"]
             for(String placement_number : number){
                 placement_number = placement_number.replaceAll(";", "");
-                
                 int placement = Integer.parseInt(placement_number);
+               
                 for (int i = 0; i < word.length(); i++){
                     while(char_list.size() <= placement + i){
                         char_list.add(' ');
                     }
                     char_list.set(placement + i, split_word[i].charAt(0));
                 }
-        
             }
             //[s ,j ,u ,  ,s ,j ,ö ,s ,j ,u ,k ,a ,  ,s ,j ,ö ,m ,ä ,n]
         }        
@@ -82,4 +79,5 @@ public class decomp {
         }
     }
 }
+
 

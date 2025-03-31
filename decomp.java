@@ -31,11 +31,11 @@ public class decomp {
         //var
         
         //String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
-        String input = " h,: 18 24 51 57 84 90 96; h!: 30 63 102; She loves you,: 0 33 66; yea: 15 21 27 48 54 60 81 87 93 99;";
+        //String input = " h,: 18 24 51 57 84 90 96; h!: 30 63 102; She loves you,: 0 33 66; yea: 15 21 27 48 54 60 81 87 93 99;";
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("");
-        //String input = scanner.nextLine();
+        String input = scanner.nextLine();
         scanner.close();
 
         List<Character> char_list = new ArrayList<>();
@@ -47,8 +47,12 @@ public class decomp {
         //ta bort : 
         for(String words : input_parts ){
             String[] word_and_numbers = words.split(":");
+
+            if(word_and_numbers[1].trim().isEmpty()){//hoppar över om det är tomt 
+                continue;
+            }
             
-            // ["sju", "0 7"]
+            // ["sju", " 0 7"]
             String word = word_and_numbers[0];
             word = word.trim();
             String[] numbers = word_and_numbers[1].trim().split(" ");
@@ -75,4 +79,5 @@ public class decomp {
         }
     }
 }
+
 

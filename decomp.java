@@ -38,30 +38,16 @@ public class decomp {
         //String input = scanner.nextLine();
         scanner.close();
 
-        //if(input.startsWith(" ")){
-        //    input = input.replaceFirst(" ", "");//tar bort alla mellan rum i början
-        //}
-        
-
-
         List<Character> char_list = new ArrayList<>();
 
         //dela upp ;
         String[] input_parts = input.split(";");
         
-
-        
-        //for(int i = 0; i < input_parts.length; i++){
-        //    System.out.println(input_parts[i]);
-        //}
-
         //["sju: 0 7", " sjö: 4 13"]
         //ta bort : 
         for(String words : input_parts ){
             String[] word_and_numbers = words.split(":");
-            //for(String word : word_and_numbers){
-            //    System.out.println(word); 
-            //}
+            
             // ["sju", "0 7"]
             String word = word_and_numbers[0];
             word = word.trim();
@@ -69,36 +55,24 @@ public class decomp {
             //[0, 7]
             
             String[] split_word = word.split("");
-            //System.out.println(word);
-            //for(String letter : test){
-            //    System.out.println(letter);
-            //}
             
             // [s, j, u] (length is 3)      [0, 7]
             for(String placement_number : numbers){
                 
                 int placement = Integer.parseInt(placement_number);
-                //System.out.println("this is a placement number" + placement);
-                //System.out.println(word.length());
                 for (int i = 0; i < word.length(); i++){
                     while(char_list.size() <= placement + i){
                         char_list.add(' ');
                     }
                     char_list.set(placement + i, split_word[i].charAt(0));
-                }
-                    
+                }      
             }
-        
             //[s ,j ,u ,  ,s ,j ,ö ,s ,j ,u ,k ,a ,  ,s ,j ,ö ,m ,ä ,n]
-
         }        
         //System.out.println(char_list);
         for(int i = 0; i < char_list.size(); i++){
             System.out.print(char_list.get(i));
         }
-
-        
-
     }
 }
 

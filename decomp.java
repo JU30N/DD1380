@@ -29,43 +29,55 @@ import java.util.*;
 public class decomp {
     public static void main(String[] args ) {
         //var
-        String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
-
+        // String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
+        String input = "h,: 18 24 51 57 84 90 96; h!: 30 63 102; She loves you,: 0 33 66; yea: 15 21 27 48 54 60 81 87 93 99";
         List<Character> char_list = new ArrayList<>();
 
         //dela upp ;
         String[] input_parts = input.split("; ");
 
-
         //for(int i = 0; i < input_parts.length; i++){
         //    System.out.println(input_parts[i]);
         //}
-        
+
+        //[sju: 0 7, sjö: 4 13]
         //ta bort : 
-        for(String words : input_parts){
+        for(String words : input_parts ){
             String[] word_and_numbers = words.split(": ");
             //for(String word : word_and_numbers){
             //    System.out.println(word); 
             //}
             // ["sju","0 7"]
-            for(int i=0; i < word_and_numbers.length;){
-                String the_word = word_and_numbers[i];
-                String the_numbers = word_and_numbers[(i+1)];
-                System.out.println(the_word +" " + the_numbers);
-                i = i + 2;
-                //cut sju
-                for(){
-                    String[] cut_the_word = 
+            String word = word_and_numbers[0];
+            String[] number = word_and_numbers[1].split(" ");
+            
+            String[] split_word = word_and_numbers[0].split("");
+            //System.out.println(word);
+            //for(String letter : test){
+            //    System.out.println(letter);
+            //}
+            
+            // [sju] (length is 3)      [0, 7]
+            for(String placement_number : number){
+                int placement = Integer.parseInt(placement_number);
+                //System.out.println("this is a placement number" + placement);
+                //System.out.println(word.length());
+                for (int i = 0; i < word.length(); i++){
+                    while(char_list.size() <= placement + i){
+                        char_list.add(' ');
+                    }
+                    char_list.set(placement + i, split_word[i].charAt(0));
                 }
-
-
-
+                    
+            }
+        
             //[s ,j ,u ,  ,s ,j ,ö ,s ,j ,u ,k ,a ,  ,s ,j ,ö ,m ,ä ,n]
 
-            }
         }        
-
-
+        System.out.println(char_list);
+        for(int i = 0; i < char_list.size(); i++){
+            System.out.print(char_list.get(i));
+        }
 
         
 

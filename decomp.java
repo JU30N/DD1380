@@ -1,5 +1,5 @@
 
-//sju: 0 7; sjö: 4 13; ka 10; män: 16"
+//sju: 0 7; sjö: 4 13; ka: 10; män: 16"
 //  0   4   7  10  13 16
 //[sju sjö sju ka sjö män]
 
@@ -29,36 +29,54 @@ import java.util.*;
 public class decomp {
     public static void main(String[] args ) {
         //var
-        // String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
-        String input = "h,: 18 24 51 57 84 90 96; h!: 30 63 102; She loves you,: 0 33 66; yea: 15 21 27 48 54 60 81 87 93 99";
+        
+        //String input = "sju: 0 7; sjö: 4 13; ka: 10; män: 16";
+        String input = " h,: 18 24 51 57 84 90 96; h!: 30 63 102; She loves you,: 0 33 66; yea: 15 21 27 48 54 60 81 87 93 99;";
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("");
+        //String input = scanner.nextLine();
+        scanner.close();
+
+        //if(input.startsWith(" ")){
+        //    input = input.replaceFirst(" ", "");//tar bort alla mellan rum i början
+        //}
+        
+
+
         List<Character> char_list = new ArrayList<>();
 
         //dela upp ;
-        String[] input_parts = input.split("; ");
+        String[] input_parts = input.split(";");
+        
 
+        
         //for(int i = 0; i < input_parts.length; i++){
         //    System.out.println(input_parts[i]);
         //}
 
-        //[sju: 0 7, sjö: 4 13]
+        //["sju: 0 7", " sjö: 4 13"]
         //ta bort : 
         for(String words : input_parts ){
-            String[] word_and_numbers = words.split(": ");
+            String[] word_and_numbers = words.split(":");
             //for(String word : word_and_numbers){
             //    System.out.println(word); 
             //}
-            // ["sju","0 7"]
+            // ["sju", "0 7"]
             String word = word_and_numbers[0];
-            String[] number = word_and_numbers[1].split(" ");
+            word = word.trim();
+            String[] numbers = word_and_numbers[1].trim().split(" ");
+            //[0, 7]
             
-            String[] split_word = word_and_numbers[0].split("");
+            String[] split_word = word.split("");
             //System.out.println(word);
             //for(String letter : test){
             //    System.out.println(letter);
             //}
             
-            // [sju] (length is 3)      [0, 7]
-            for(String placement_number : number){
+            // [s, j, u] (length is 3)      [0, 7]
+            for(String placement_number : numbers){
+                
                 int placement = Integer.parseInt(placement_number);
                 //System.out.println("this is a placement number" + placement);
                 //System.out.println(word.length());
@@ -74,7 +92,7 @@ public class decomp {
             //[s ,j ,u ,  ,s ,j ,ö ,s ,j ,u ,k ,a ,  ,s ,j ,ö ,m ,ä ,n]
 
         }        
-        System.out.println(char_list);
+        //System.out.println(char_list);
         for(int i = 0; i < char_list.size(); i++){
             System.out.print(char_list.get(i));
         }

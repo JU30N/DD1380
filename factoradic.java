@@ -16,3 +16,51 @@
 // 1/2! = 0
 // 1/1! = 1
 // 25 -> 1001
+
+
+public class factoradic {
+    public static void main(String[] args){
+        int test = to_factoradic("654320");
+        System.out.println(":" + test);
+
+    }
+
+    public static int factorial(int n){
+        int factorial_sum = 1;
+        for(int i = 1; i <= n; i++){
+            factorial_sum *= i;
+        }
+        return factorial_sum;
+    }
+
+
+// 654320 -> 5038
+// 654320 -> read from right to left -> 0 -> for loop n = 1, total_sum = 0 -> 0 times n! + total_sum -> loop till last number
+// read antal numbers 654320 -> 6 -> 6! is the last one
+    public static int to_factoradic(String n){
+        String input = n;
+        System.out.println("input: " + input);
+
+        int number_of_digits = input.length();
+        System.out.println("number_of_digits: " + number_of_digits);
+        int i = 1;
+        int total_sum = 0;
+
+        while(number_of_digits > (i-1)){
+            int digit = Character.getNumericValue(input.charAt(((number_of_digits -(i - 1)) - 1)));
+            System.out.println("digit: " + digit);
+            System.out.println("i: " + i);
+            int factorial = factorial(i);
+            System.out.println("factorial: " + factorial);
+            total_sum += digit * factorial;
+            i++;
+        }
+        return total_sum;
+    }
+
+
+// 25 -> 1001
+    public static int from_factoradic(int n){
+        return 0;
+    }
+}

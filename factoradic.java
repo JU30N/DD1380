@@ -23,10 +23,13 @@ import java.util.List;
 public class factoradic {
     public static void main(String[] args){
         int test = to_factoradic("654320");
-        System.out.println(":" + test);
+        System.out.println(test);
 
-        int test2 = from_factoradic(3);
-        System.out.println(":" + test2);
+        List<Integer> test2 = from_factoradic(25);
+        //System.out.println();
+        for (int o = test2.size() - 1; o >= 0; o--) {
+            System.out.print(test2.get(o));
+        }
 
     }
 
@@ -44,21 +47,21 @@ public class factoradic {
 // read antal numbers 654320 -> 6 -> 6! is the last one
     public static int to_factoradic(String n){
         String input = n;
-        System.out.println("input: " + input);
+       // System.out.println("input: " + input);
 
         int number_of_digits = input.length();
-        System.out.println("number_of_digits: " + number_of_digits);
+        //System.out.println("number_of_digits: " + number_of_digits);
         int k = 1;
         int total_sum = 0;
 
         while(number_of_digits > (k-1)){
             int digit = Character.getNumericValue(input.charAt(((number_of_digits -(k - 1)) - 1)));
-            System.out.println("digit: " + digit);
-            System.out.println("k: " + k);
+            //System.out.println("digit: " + digit);
+            //System.out.println("k: " + k);
             int factorial = factorial(k);
-            System.out.println("factorial: " + factorial);
+            //System.out.println("factorial: " + factorial);
             total_sum += digit * factorial;
-            System.out.println("total_sum: " + total_sum);
+            //System.out.println("total_sum: " + total_sum);
             k++;
         }
         return total_sum;
@@ -73,21 +76,32 @@ public class factoradic {
 
         while (factorial_divided_input_number > 1){
             int factorial = factorial(f);
-            System.out.println("factorial: " + factorial);
-            System.out.println("input_number: " + num);
+            //System.out.println("factorial: " + factorial);
+            //System.out.println("input_number: " + num);
             factorial_divided_input_number = num / factorial;
-            System.out.println("factorial_divided_input_number: " + factorial_divided_input_number);
+            //System.out.println("factorial_divided_input_number: " + factorial_divided_input_number);
             min_factorial = factorial;
             f++;
         }
         return min_factorial;
     }
 
-
+    public static int find_factorial_for_number(int num) {
+        int f = 1; 
+        int factorial = 1;
+    
+        
+        while (factorial <= num) {
+            f++;
+            factorial = factorial(f);
+        }
+    
+        return f - 1;
+    }
 
 
 // 25 -> 1001
-    public static int from_factoradic(int input_number){
+    public static List<Integer> from_factoradic(int input_number){
         List<Integer> numb_to_fac = new ArrayList<>();
         // hitta minsta fakturent till 25
         // 1! = 1, 2! = 2, 3! = 6, 4! = 24, 5! = 120
@@ -102,11 +116,37 @@ public class factoradic {
         // 1/1! = 1
         // 25 -> 1001
         int minimum_factorial = find_min_factorial(input_number);//found the min factorial
-        System.out.println("minimum_factorial: " + minimum_factorial);
-
-        int remainder = input_number % minimum_factorial;//remainder 
-        System.out.println("remainder: " + remainder);
+        //System.out.println("minimum_factorial: " + minimum_factorial);//24
+        int number_factorial = find_factorial_for_number(input_number);//factorial for the number
         
-        return 0;
+
+
+        int number = input_number;
+        int remainder = 1;
+        int result = 1;
+
+        while (remainder > 0){
+            result = number / minimum_factorial; // hitta mutilpel
+            remainder = number % minimum_factorial; //hitta rest
+            //System.out.println("result: " + result);
+            //System.out.println("remainder: " + remainder);
+
+            numb_to_fac.add(result);//add 1
+            number_factorial--;//minska fakturent
+            //System.out.println("number_factorial: " + number_factorial);
+
+            minimum_factorial = factorial(number_factorial);//fakturent summa
+            //System.out.println("minimum_factorial: " + minimum_factorial);
+
+            number = remainder;//remainder = number
+            //System.out.println("number: " + number);
+        }
+        
+        
+
+
+
+
+        return numb_to_fac;
     }
 }

@@ -87,16 +87,16 @@ public class factoradic {
     }
 
     public static int find_factorial_for_number(int num) {
-        int f = 1; 
+        int p = 1; 
         int factorial = 1;
     
         
         while (factorial <= num) {
-            f++;
-            factorial = get_factorial_sum(f);
+            p++;
+            factorial = get_factorial_sum(p);
         }
     
-        return f - 1;
+        return p - 1;
     }
 
 

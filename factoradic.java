@@ -33,7 +33,7 @@ public class factoradic {
 
     }
 
-    public static int factorial(int j){
+    public static int get_factorial_sum(int j){
         int factorial_sum = 1;
         for(int i = 1; i <= j; i++){
             factorial_sum *= i;
@@ -58,7 +58,7 @@ public class factoradic {
             int digit = Character.getNumericValue(input.charAt(((number_of_digits -(k - 1)) - 1)));
             //System.out.println("digit: " + digit);
             //System.out.println("k: " + k);
-            int factorial = factorial(k);
+            int factorial = get_factorial_sum(k);
             //System.out.println("factorial: " + factorial);
             total_sum += digit * factorial;
             //System.out.println("total_sum: " + total_sum);
@@ -68,14 +68,14 @@ public class factoradic {
     }
 
 
-    public static int find_min_factorial(int num){
+    public static int get_min_factorial(int num){
 
         int f = 1;
         int factorial_divided_input_number = 100;
         int min_factorial = 0;
 
         while (factorial_divided_input_number > 1){
-            int factorial = factorial(f);
+            int factorial = get_factorial_sum(f);
             //System.out.println("factorial: " + factorial);
             //System.out.println("input_number: " + num);
             factorial_divided_input_number = num / factorial;
@@ -93,7 +93,7 @@ public class factoradic {
         
         while (factorial <= num) {
             f++;
-            factorial = factorial(f);
+            factorial = get_factorial_sum(f);
         }
     
         return f - 1;
@@ -115,7 +115,7 @@ public class factoradic {
         // 1/2! = 0
         // 1/1! = 1
         // 25 -> 1001
-        int minimum_factorial = find_min_factorial(input_number);//found the min factorial
+        int minimum_factorial = get_min_factorial(input_number);//found the min factorial
         //System.out.println("minimum_factorial: " + minimum_factorial);//24
         int number_factorial = find_factorial_for_number(input_number);//factorial for the number
         
@@ -135,7 +135,7 @@ public class factoradic {
             number_factorial--;//minska fakturent
             //System.out.println("number_factorial: " + number_factorial);
 
-            minimum_factorial = factorial(number_factorial);//fakturent summa
+            minimum_factorial = get_factorial_sum(number_factorial);//fakturent summa
             //System.out.println("minimum_factorial: " + minimum_factorial);
 
             number = remainder;//remainder = number

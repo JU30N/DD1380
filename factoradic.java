@@ -43,15 +43,31 @@ public class factoradic {
     }
 
     public static void testing_function(){
+        //System.out.println("11 to ascii is " + number_to_ASCII(9));
         int test = to_factoradic("654320");
         System.out.println(test);
 
         List<Long> test2 = from_factoradic("1122334455667788");
         //System.out.println();
         for (int o = test2.size() - 1; o >= 0; o--) {
-            System.out.print(test2.get(o));
+            char c = number_to_ASCII(test2.get(o).intValue());
+            
+            //System.out.print("test2: " + test2.get(o));
+            //System.out.println();
+            System.out.print(c);
+            //System.out.println();
+
         }
 
+    }
+
+    public static char number_to_ASCII(int input_of_number){
+        if (input_of_number >= 10){
+            int result_of_ascii = (input_of_number + 55);
+            return (char) result_of_ascii;
+        }else{
+            return (char) (input_of_number + 48);
+        }
     }
 
     public static long get_factorial_sum(long j){
@@ -124,6 +140,7 @@ public class factoradic {
         return p - 1;
     }
 
+   
 
 // 25 -> 1001
     public static List<Long> from_factoradic(String string_number){
@@ -178,13 +195,7 @@ public class factoradic {
             }
             numb_to_fac.add(result);//addera mutipel till lista
         }
-        
-        
-
-
-
-        
-       
+    
         for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
             System.out.print(numb_to_fac.get(o));      
         }

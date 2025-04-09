@@ -44,20 +44,20 @@ public class factoradic {
 
     public static void testing_function(){
         //System.out.println("11 to ascii is " + number_to_ASCII(9));
-        int test = to_factoradic("654320");
+        long test = to_factoradic("32A40244706404200");
         System.out.println(test);
 
-        List<Long> test2 = from_factoradic("1122334455667788");
+        //List<Long> test2 = from_factoradic("1122334455667788");
         //System.out.println();
-        for (int o = test2.size() - 1; o >= 0; o--) {
-            char c = number_to_ASCII(test2.get(o).intValue());
+        //for (int o = test2.size() - 1; o >= 0; o--) {
+            //char c = number_to_ASCII(test2.get(o).intValue());
             
             //System.out.print("test2: " + test2.get(o));
             //System.out.println();
-            System.out.print(c);
+            //System.out.print(c);
             //System.out.println();
 
-        }
+        //}
 
     }
 
@@ -82,25 +82,30 @@ public class factoradic {
 // 654320 -> 5038
 // 654320 -> read from right to left -> 0 -> for loop n = 1, total_sum = 0 -> 0 times n! + total_sum -> loop till last number
 // read antal numbers 654320 -> 6 -> 6! is the last one
-    public static int to_factoradic(String n){
-        String input = n;
-       // System.out.println("input: " + input);
+    public static long to_factoradic(String n) {
+        String input = n; // Input string
+        System.out.println("input: " + input);
 
-        int number_of_digits = input.length();
-        //System.out.println("number_of_digits: " + number_of_digits);
-        int k = 1;
-        int total_sum = 0;
+        long number_of_digits = input.length();
+        System.out.println("number_of_digits: " + number_of_digits);
+        System.out.println("");
 
-        while(number_of_digits > (k-1)){
-            int digit = Character.getNumericValue(input.charAt(((number_of_digits -(k - 1)) - 1)));
-            //System.out.println("digit: " + digit);
-            //System.out.println("k: " + k);
-            long factorial_sum_1 = get_factorial_sum(k);
-            //System.out.println("factorial: " + factorial);
+        long total_sum = 0;
+
+        for (int k = 0; k < number_of_digits; k++) {
+            char character = input.charAt((int) (number_of_digits - k - 1)); 
+            int digit = Character.getNumericValue(character); 
+
+            System.out.println("Character: " + character + ", Numeric Value: " + digit);
+            System.out.println("k: " + (k + 1));
+
+            long factorial_sum_1 = get_factorial_sum(k + 1); 
             total_sum += digit * factorial_sum_1;
-            //System.out.println("total_sum: " + total_sum);
-            k++;
+
+            System.out.println(digit + " * " + (k + 1) + "! = " + (digit * factorial_sum_1));
+            System.out.println("total_sum: " + total_sum);
         }
+
         return total_sum;
     }
 

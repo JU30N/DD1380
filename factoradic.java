@@ -24,8 +24,8 @@ import java.util.Scanner;
 
 public class factoradic {
     public static void main(String[] args){
-        testing_function();
-        //main2();
+        //testing_function();
+        main2();
 
 
 
@@ -36,25 +36,38 @@ public class factoradic {
         Scanner scanner = new Scanner(System.in);
         String first_string_number = scanner.nextLine();
         String second_string_number = scanner.nextLine();
-        System.out.println("first_string_number: " + first_string_number);
-        System.out.println("second_string_number: " + second_string_number);
+        long first_num = to_factoradic(first_string_number);
+        System.out.println(first_num);
+        List<Long> test2 = from_factoradic(second_string_number);
+
+        for (int o = test2.size() - 1; o >= 0; o--) {
+            char c = number_to_ASCII(test2.get(o).intValue());
+            
+            //System.out.print("test2: " + test2.get(o));
+            //System.out.println();
+            System.out.print(c);
+            //System.out.println();
+
+        }
+        //System.out.println("first_string_number: " + first_string_number);
+        //System.out.println("second_string_number: " + second_string_number);
         scanner.close();
 
     }
 
     public static void testing_function(){
         //System.out.println("11 to ascii is " + number_to_ASCII(9));
-        long test = to_factoradic("32A40244706404200");
-        System.out.println(test);
+        //long test = to_factoradic("32A40244706404200");
+        //System.out.println(test);
 
         //List<Long> test2 = from_factoradic("1122334455667788");
         //System.out.println();
         //for (int o = test2.size() - 1; o >= 0; o--) {
-            //char c = number_to_ASCII(test2.get(o).intValue());
+        //    char c = number_to_ASCII(test2.get(o).intValue());
             
             //System.out.print("test2: " + test2.get(o));
             //System.out.println();
-            //System.out.print(c);
+        //    System.out.print(c);
             //System.out.println();
 
         //}
@@ -73,7 +86,7 @@ public class factoradic {
     public static long get_factorial_sum(long j){
         long factorial_sum = 1;
         for(long i = 1; i <= j; i++){
-            factorial_sum *= i;
+            factorial_sum *= i;           
         }
         return factorial_sum;
     }
@@ -84,11 +97,11 @@ public class factoradic {
 // read antal numbers 654320 -> 6 -> 6! is the last one
     public static long to_factoradic(String n) {
         String input = n; // Input string
-        System.out.println("input: " + input);
+        //System.out.println("input: " + input);
 
         long number_of_digits = input.length();
-        System.out.println("number_of_digits: " + number_of_digits);
-        System.out.println("");
+        //System.out.println("number_of_digits: " + number_of_digits);
+        //System.out.println("");
 
         long total_sum = 0;
 
@@ -96,14 +109,14 @@ public class factoradic {
             char character = input.charAt((int) (number_of_digits - k - 1)); 
             int digit = Character.getNumericValue(character); 
 
-            System.out.println("Character: " + character + ", Numeric Value: " + digit);
-            System.out.println("k: " + (k + 1));
+            //System.out.println("Character: " + character + ", Numeric Value: " + digit);
+            //System.out.println("k: " + (k + 1));
 
             long factorial_sum_1 = get_factorial_sum(k + 1); 
             total_sum += digit * factorial_sum_1;
 
-            System.out.println(digit + " * " + (k + 1) + "! = " + (digit * factorial_sum_1));
-            System.out.println("total_sum: " + total_sum);
+            //System.out.println(digit + " * " + (k + 1) + "! = " + (digit * factorial_sum_1));
+            //System.out.println("total_sum: " + total_sum);
         }
 
         return total_sum;
@@ -111,7 +124,7 @@ public class factoradic {
 
 
     public static long get_min_factorial(long num_1){
-        System.out.println("num: " + num_1);
+        //x System.out.println("num: " + num_1);
         int f = 1;
         long factorial_divided_input_number = 100;
         long min_factorial = 0;
@@ -133,13 +146,13 @@ public class factoradic {
         long p = 1; 
         long factorial = 1;
     
-        System.out.println("num_2: " + num_2);
+        //System.out.println("num_2: " + num_2);
         while (factorial <= num_2) {
-            System.out.println("factorial: " + factorial);
+            //System.out.println("factorial: " + factorial);
             
             factorial = get_factorial_sum(p);
             p++;
-            System.out.println("p: " + p);
+            //System.out.println("p: " + p);
         }
     
         return p - 1;
@@ -151,7 +164,7 @@ public class factoradic {
     public static List<Long> from_factoradic(String string_number){
         List<Long> numb_to_fac = new ArrayList<>();
         long input_number = Long.parseLong(string_number);
-        System.out.println("input_number: " + input_number);
+        //System.out.println("input_number: " + input_number);
 
         // hitta minsta fakturent till 25
         // 1! = 1, 2! = 2, 3! = 6, 4! = 24, 5! = 120
@@ -174,47 +187,52 @@ public class factoradic {
         long remainder = 1;
         long result = 1;
 
-        System.out.println("min fac "+number_factorial);
+        //System.out.println("min fac "+number_factorial);
 
-        while (number_factorial > 0){
-            System.out.println();
+        while (number_factorial > 1){
+            
+            number_factorial--;
+            //System.out.println();
+            //System.out.println(number_factorial);
+            minimum_factorial = get_factorial_sum(number_factorial);
             result = number / minimum_factorial; // hitta mutilpel
-            System.out.println("dividing: " + number + " / " + minimum_factorial + " = " + result);
             remainder = number % minimum_factorial; //hitta rest
-            System.out.println("rest: " + number + " % " + minimum_factorial + " = " + remainder);
-            System.out.println("IMPORTNANT result: " + result);
+
+           // System.out.println("dividing: " + number + " / " + minimum_factorial + " = " + result);
+            //System.out.println("rest: " + number + " % " + minimum_factorial + " = " + remainder);
+            //System.out.println("IMPORTNANT result: " + result);
             //System.out.println("remainder: " + remainder);
             
-            number_factorial--;//minska fakturent
-            System.out.println("number_factorial: " + number_factorial);
+            //minska fakturent
+            //System.out.println("number_factorial: " + number_factorial);
 
-            minimum_factorial = get_factorial_sum(number_factorial);//fakturent summa
-            System.out.println("minimum_factorial: " + minimum_factorial);
+           //fakturent summa
+            //System.out.println("minimum_factorial: " + minimum_factorial);
 
             number = remainder;//remainder = number
-            System.out.println("number: " + number);
-            for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
-                System.out.println();
-                System.out.print(numb_to_fac.get(o));
-                System.out.println();
-            }
+            //System.out.println("number: " + number);
+            //for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
+            //    System.out.println();
+            //    System.out.print(numb_to_fac.get(o));
+            //    System.out.println();
+            //}
             numb_to_fac.add(result);//addera mutipel till lista
         }
     
-        for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
-            System.out.print(numb_to_fac.get(o));      
-        }
-        System.out.println();
+        //for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
+         //   System.out.print(numb_to_fac.get(o));      
+        //}
+        //System.out.println();
         // Remove leading zeros
         while (numb_to_fac.get(0) == 0) {
             numb_to_fac.remove(0); // Remove the first element if it's zero
         }
-        System.out.println();
+        //System.out.println();
         Collections.reverse(numb_to_fac);
-        for (int o = numb_to_fac.size() - 1; o >= 0; o--) {
-            System.out.print(numb_to_fac.get(o));      
-        }
-        System.out.println();
+        //or (int o = numb_to_fac.size() - 1; o >= 0; o--) {
+        //    System.out.print(numb_to_fac.get(o));      
+        //}
+        //System.out.println();
 
         return numb_to_fac;
     }

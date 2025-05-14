@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class LargestIsland {
+public class islandsize {
 
     
     

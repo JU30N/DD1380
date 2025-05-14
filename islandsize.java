@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class islandsize {
 
@@ -12,6 +14,9 @@ public class islandsize {
         int x = sc.nextInt();
         int y = sc.nextInt();
         sc.nextLine(); 
+        if (x > 10000 || y > 10000) {
+            return;
+        }
 
        
         char[][] map = new char[x][y];
@@ -36,6 +41,7 @@ public class islandsize {
                     // Uppdatera största ön om vi hittar en större
                     largestIslandSize = Math.max(largestIslandSize, islandSize);
                 }
+                
             }
         }
 
@@ -49,21 +55,33 @@ public class islandsize {
     //~~~@~@@~~~
 
     // search för att hitta alla sammanhängande '@' och räkna dem
-    private static int search(char[][] map, boolean[][] visited, int x, int y, int maxX, int maxY) {
-        final int[] DIRECTIONS_X = {-1, 1, 0, 0}; // konstant
-        final int[] DIRECTIONS_Y = {0, 0, -1, 1}; 
-        visited[x][y] = true;
-        int size = 1;  
+  
+    private static int search(char[][] map, boolean[][] visited, int startX, int startY, int maxX, int maxY) {
+        final int[] DIRECTIONS_X = {-1, 1, 0, 0}; // up, down
+        final int[] DIRECTIONS_Y = {0, 0, -1, 1}; // left, right
 
-        // kolla up ner v h 
-        for (int i = 0; i < 4; i++) {
-            int newX = x + DIRECTIONS_X[i];
-            int newY = y + DIRECTIONS_Y[i];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{startX, startY});
+        visited[startX][startY] = true;
 
-            // kollar inom map och besökt eller inte samt om land
-            if (newX >= 0 && newX < maxX && newY >= 0 && newY < maxY && map[newX][newY] == '@' && !visited[newX][newY]) {
-                //om nytt land kolla den och addera storlek
-                size += search(map, visited, newX, newY, maxX, maxY);
+        int size = 0;
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();//takes the first element and removes it from the queue
+            int x = current[0];
+            int y = current[1];
+            size++;
+
+            // Explore all 4 directions
+            for (int i = 0; i < 4; i++) {
+                int newX = x + DIRECTIONS_X[i];//look around
+                int newY = y + DIRECTIONS_Y[i];
+
+                // Check if the new cell is within bounds, is land, and not visited
+                if (newX >= 0 && newX < maxX && newY >= 0 && newY < maxY && map[newX][newY] == '@' && !visited[newX][newY]) {
+                    queue.add(new int[]{newX, newY});//add to queue to look further
+                    visited[newX][newY] = true;
+                }
             }
         }
 

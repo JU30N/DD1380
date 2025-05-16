@@ -3,12 +3,12 @@ import java.util.*;
 
 public class snowdepth {
 
-    public static class SnowDepthRecord implements Comparable<SnowDepthRecord> {//only comparable snowdepht
+    public static class Snowdepthrecord implements Comparable<Snowdepthrecord> {//only comparable snowdepht
         String date;
         String location;
         double depth;
 
-        public SnowDepthRecord(String date, String location, double depth) {//one time use constant
+        public Snowdepthrecord(String date, String location, double depth) {//one time use constant
             this.date = date;
             this.location = location;
             this.depth = depth;
@@ -19,10 +19,13 @@ public class snowdepth {
         }
 
         @Override//override to make my own compareTo
-        public int compareTo(SnowDepthRecord other) {
+        public int compareTo(Snowdepthrecord other) {
             int yes_no = Double.compare(other.depth, this.depth);
-            if (yes_no != 0) return yes_no;//if not equal 
+            if (yes_no != 0){
+                return yes_no;//if not equal 
+            }else{
             return this.location.compareTo(other.location);//if equal compare name
+            }
         }
 
         @Override//override to make my own tostring thing
@@ -33,7 +36,7 @@ public class snowdepth {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Map<Integer, List<SnowDepthRecord>> yearlydata = new HashMap<>();//dictionary
+        Map<Integer, List<Snowdepthrecord>> yearlydata = new HashMap<>();//dictionary
 
         while (scanner.hasNextLine()) {
             //2023-01-01 Stockholm 15.5
@@ -56,7 +59,7 @@ public class snowdepth {
             }
             String location = locationBuilder.toString();//location built Stockholm
 
-            SnowDepthRecord record = new SnowDepthRecord(date, location, depth);//new record 2023-01-01 Stockholm 15.5
+            Snowdepthrecord record = new Snowdepthrecord(date, location, depth);//new record 2023-01-01 Stockholm 15.5
             int year = record.getYear();//2023
 
             if (!yearlydata.containsKey(year)) {//look if the year exists so 2023
@@ -75,19 +78,48 @@ public class snowdepth {
         //System.out.println("\n");
 
         for (int year : sortedYears) {
-            List<SnowDepthRecord> records = yearlydata.get(year);
-            //System.out.println(year);
-            //System.out.println(records);
-            //System.out.println("\n");
+            List<Snowdepthrecord> records = yearlydata.get(year);
+            Map<String, Snowdepthrecord> toprecord_location = new HashMap<>();
+
+            // System.out.println(year);
+            // System.out.println(records);
+
             Collections.sort(records); //sorts snow and location(byname )
-            //System.out.println(year);
-            //System.out.println(records);
-            //System.out.println("\n");
+
+            /* 
+            System.out.println("this is year");
+            System.out.println(year);
+            System.out.println(records);
+            System.out.println(toprecord_location);
+            System.out.println("\n");
+            System.out.println(year);
+            System.out.println("\n");
+            */
+
+            for (Snowdepthrecord record : records) {
+                String location = record.location;
+                if (!toprecord_location.containsKey(location)) {//if location not in the map
+                    toprecord_location.put(location, record);//put it in the map
+                } else {
+                    Snowdepthrecord existingRecord = toprecord_location.get(location);
+                    if (record.depth > existingRecord.depth) {//if the new one is bigger
+                        toprecord_location.put(location, record);//put it in the map
+                    }
+                }
+            }
+            //System.out.println(toprecord_location);
+            List<Snowdepthrecord> sortedtoprecords = new ArrayList<>(toprecord_location.values());
+            Collections.sort(sortedtoprecords); // sort the map
+            //System.out.println("sorted records"+toprecord_location);
+            //System.out.println(sortedtoprecords);
+
+
+
+
 
             System.out.println(year);
-            //System.out.println("\n");
-            for (int i = 0; i < Math.min(5, records.size()); i++) {
-                System.out.println(records.get(i));
+            for (int i = 0; i < Math.min(5, sortedtoprecords.size()); i++) {
+                System.out.println(sortedtoprecords.get(i));
             }
         }
     }

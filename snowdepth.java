@@ -25,15 +25,15 @@ public class snowdepth {
             return this.location.compareTo(other.location);//if equal compare name
         }
 
-        @Override
+        @Override//override to make my own tostring thing
         public String toString() {
-            return location + " " + String.format("%.2f", depth);
+            return location + " " + String.format("%.2f", depth);//no snowdepth1231#32432
         }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Map<Integer, List<SnowDepthRecord>> yearlydata = new HashMap<>();
+        Map<Integer, List<SnowDepthRecord>> yearlydata = new HashMap<>();//dictionary
 
         while (scanner.hasNextLine()) {
             //2023-01-01 Stockholm 15.5
@@ -65,6 +65,7 @@ public class snowdepth {
             yearlydata.get(year).add(record);//add record to the year if it exists
 
         }
+        scanner.close();
 
         List<Integer> sortedYears = new ArrayList<>(yearlydata.keySet());
         //System.out.println(sortedYears);//2023 2024

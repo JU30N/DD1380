@@ -1,6 +1,12 @@
 
 import java.util.*;
-
+/*möjliga fel
+ långa man no
+ år fel no
+ namn fel no
+ snödjup fel no
+ 
+ */
 public class snowdepth {
 
     public static class Snowdepthrecord implements Comparable<Snowdepthrecord> {//only comparable snowdepht

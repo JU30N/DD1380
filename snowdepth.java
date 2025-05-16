@@ -27,7 +27,7 @@ public class snowdepth {
 
         @Override//override to make my own tostring thing
         public String toString() {
-            return location + " " + String.format("%.2f", depth);//no snowdepth1231#32432
+            return location + " " + String.format("%.1f", depth).replace(',','.');//no snowdepth1231#32432
         }
     }
 

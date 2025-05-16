@@ -1,3 +1,12 @@
+/*
+varible change from string to double keep the string 
+this. kfdklsafjöd = sel.f.....
+ */
+
+
+
+
+
 
 import java.util.*;
 /*möjliga fel
@@ -13,12 +22,13 @@ public class snowdepth {
         String date;
         String location;
         double depth;
-        String depth_string;
+        String depth_str;
 
         public Snowdepthrecord(String date, String location, double depth) {//one time use constant
             this.date = date;
             this.location = location;
             this.depth = depth;
+            this.depth_str = String.valueOf(depth);
             
         }
 
@@ -39,7 +49,7 @@ public class snowdepth {
         @Override//override to make my own tostring thing
         public String toString() {
             
-            return location + " " + depth_string;//no 
+            return location + " " + depth_str;//no 
         }
     }
 

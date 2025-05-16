@@ -13,11 +13,13 @@ public class snowdepth {
         String date;
         String location;
         double depth;
+        String depth_string;
 
         public Snowdepthrecord(String date, String location, double depth) {//one time use constant
             this.date = date;
             this.location = location;
             this.depth = depth;
+            
         }
 
         public int getYear() {
@@ -36,7 +38,8 @@ public class snowdepth {
 
         @Override//override to make my own tostring thing
         public String toString() {
-            return location + " " + String.format("%.1f", depth).replace(',','.');//no snowdepth1231#32432
+            
+            return location + " " + depth_string;//no 
         }
     }
 
@@ -51,7 +54,17 @@ public class snowdepth {
             String line = scanner.nextLine().trim();
             if (line.isEmpty()) break;
 
-            String[] parts = line.split(" ");//2023-01-01    Stockholm    15.5
+            // System.out.println("this is line before");
+            // System.out.println(line);
+            String[] parts = line.split(" ");//2023-01-01    Stockholm    15.5    19720104   Val    d'Isere     1.40     19720104 Val d   'Isere 1.4 20230215 Kiruna 1.2
+
+
+            /*
+            System.out.println("this is line after");
+            for (int i = 0; i < parts.length; i++) {
+                System.out.println(parts[i]);
+            }
+            */
 
             String date = parts[0];//2023-01-01 
             double depth = Double.parseDouble(parts[parts.length - 1]);//15.5
@@ -92,27 +105,23 @@ public class snowdepth {
 
             Collections.sort(records); //sorts snow and location(byname )
 
-            /* 
-            System.out.println("this is year");
-            System.out.println(year);
-            System.out.println(records);
-            System.out.println(toprecord_location);
-            System.out.println("\n");
-            System.out.println(year);
-            System.out.println("\n");
-            */
+            
+            // System.out.println("this is year");
+            // System.out.println(year);
+            // System.out.println(records);
+            // System.out.println(toprecord_location);
+            // System.out.println("\n");
+            // System.out.println(year);
+            // System.out.println("\n");
+             
 
             for (Snowdepthrecord record : records) {
                 String location = record.location;
                 if (!toprecord_location.containsKey(location)) {//if location not in the map
                     toprecord_location.put(location, record);//put it in the map
-                } else {
-                    Snowdepthrecord existingRecord = toprecord_location.get(location);
-                    if (record.depth > existingRecord.depth) {//if the new one is bigger
-                        toprecord_location.put(location, record);//put it in the map
-                    }
-                }
+                } 
             }
+            
             //System.out.println(toprecord_location);
             List<Snowdepthrecord> sortedtoprecords = new ArrayList<>(toprecord_location.values());
             Collections.sort(sortedtoprecords); // sort the map

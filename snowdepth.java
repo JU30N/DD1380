@@ -1,7 +1,6 @@
 /*
 varible change from string to double keep the string 
 this. kfdklsafjöd = sel.f.....
-hello
  */
 
 

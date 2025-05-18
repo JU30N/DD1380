@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "decomp",
+            "request": "launch",
+            "mainClass": "decomp",
+            "projectName": "DD1380-1_ff74d5d"
+        },
+        {
+            "type": "java",
             "name": "kth_javap_windows",
             "request": "launch",
             "mainClass": "kth_javap_windows",

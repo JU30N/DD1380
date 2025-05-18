@@ -33,13 +33,12 @@ public class islandsize {
 
         // gå igenom varje cell i kartan
         for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                // om cell är lan och inte besökt
-                if (map[i][j] == '@' && !visited[i][j]) {
-                    //kolla land yta
-                    int islandSize = search(map, visited, i, j, x, y);
-                    // Uppdatera största ön om vi hittar en större
-                    largestIslandSize = Math.max(largestIslandSize, islandSize);
+            for (int j = 0; j < y; j++) {// om cell är lan och inte besökt
+                if (map[i][j] == '@' && !visited[i][j]) {//kolla land yta
+                    int islandSize = search(map, visited, i, j, x, y);// uppdatera största ön om vi hittar en större
+                    if (islandSize > largestIslandSize) {
+                        largestIslandSize = islandSize;
+                    }
                 }
                 
             }
@@ -77,7 +76,7 @@ public class islandsize {
                 int newX = x + DIRECTIONS_X[i];//look around
                 int newY = y + DIRECTIONS_Y[i];
 
-                // Check if the new cell is within bounds, is land, and not visited
+                //check if the new cell is within bounds is land and not visited if all true add the new coordiantes to the queue to check later
                 if (newX >= 0 && newX < maxX && newY >= 0 && newY < maxY && map[newX][newY] == '@' && !visited[newX][newY]) {
                     queue.add(new int[]{newX, newY});//add to queue to look further
                     visited[newX][newY] = true;

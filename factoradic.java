@@ -133,7 +133,7 @@ public class factoradic {
             long factorial_sum = get_factorial_sum(f);
             //System.out.println("factorial: " + factorial);
             //System.out.println("input_number: " + num);
-            factorial_divided_input_number = num_1 / factorial_sum;
+            factorial_divided_input_number = num_1 / factorial_sum;// rounds down the result
             //System.out.println("factorial_divided_input_number: " + factorial_divided_input_number);
             min_factorial = factorial_sum;
             f++;
@@ -155,7 +155,7 @@ public class factoradic {
             //System.out.println("p: " + p);
         }
     
-        return p - 1;
+        return p - 1;//it does one more iteration than needed
     }
 
    
@@ -163,7 +163,7 @@ public class factoradic {
 // 25 -> 1001
     public static List<Long> from_factoradic(String string_number){
         List<Long> numb_to_fac = new ArrayList<>();
-        long input_number = Long.parseLong(string_number);
+        long input_number = Long.parseLong(string_number);//string to long
         //System.out.println("input_number: " + input_number);
 
         // hitta minsta fakturent till 25
